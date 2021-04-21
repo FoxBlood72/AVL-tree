@@ -14,7 +14,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Noxium
-Date                   :=04/05/21
+Date                   :=04/21/21
 CodeLitePath           :=/home/noxium/.codelite
 LinkerName             :=/usr/bin/g++-8
 SharedObjectLinkerName :=/usr/bin/g++-8 -shared -fPIC
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=../build-$(ConfigurationName)/AVL_Tree/main.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/AVL_Tree/AVLTree.cpp$(ObjectSuffix) 
+Objects0=../build-$(ConfigurationName)/AVL_Tree/main.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/AVL_Tree/AVLTree.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(ObjectSuffix) 
 
 
 
@@ -99,14 +99,6 @@ PreBuild:
 ../build-$(ConfigurationName)/AVL_Tree/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/AVL_Tree/main.cpp$(PreprocessSuffix) main.cpp
 
-../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(ObjectSuffix): TreeNode.cpp ../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/noxium/Documents/C/C/AVL_Tree/TreeNode.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/TreeNode.cpp$(ObjectSuffix) $(IncludePath)
-../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(DependSuffix): TreeNode.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(DependSuffix) -MM TreeNode.cpp
-
-../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(PreprocessSuffix): TreeNode.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(PreprocessSuffix) TreeNode.cpp
-
 ../build-$(ConfigurationName)/AVL_Tree/AVLTree.cpp$(ObjectSuffix): AVLTree.cpp ../build-$(ConfigurationName)/AVL_Tree/AVLTree.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/noxium/Documents/C/C/AVL_Tree/AVLTree.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AVLTree.cpp$(ObjectSuffix) $(IncludePath)
 ../build-$(ConfigurationName)/AVL_Tree/AVLTree.cpp$(DependSuffix): AVLTree.cpp
@@ -114,6 +106,14 @@ PreBuild:
 
 ../build-$(ConfigurationName)/AVL_Tree/AVLTree.cpp$(PreprocessSuffix): AVLTree.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/AVL_Tree/AVLTree.cpp$(PreprocessSuffix) AVLTree.cpp
+
+../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(ObjectSuffix): TreeNode.cpp ../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/noxium/Documents/C/C/AVL_Tree/TreeNode.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/TreeNode.cpp$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(DependSuffix): TreeNode.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(DependSuffix) -MM TreeNode.cpp
+
+../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(PreprocessSuffix): TreeNode.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/AVL_Tree/TreeNode.cpp$(PreprocessSuffix) TreeNode.cpp
 
 
 -include ../build-$(ConfigurationName)/AVL_Tree//*$(DependSuffix)

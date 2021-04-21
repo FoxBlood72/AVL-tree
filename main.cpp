@@ -320,9 +320,9 @@ int main() {
 					int val;
 					cout<<"Citit nodul numarul "<<i+1<<endl; 
 					cin>>val;
-					TreeNode *nod_nou = new TreeNode();
-					nod_nou -> value = val;
-					obj.root = obj.insert(obj.root, nod_nou);
+					bool success = obj.insert(val);
+					if(success)
+						cout<<"SUCCESS!"<<endl;
 				}
                 cout << endl;
                 break;
@@ -330,8 +330,8 @@ int main() {
                 cout << "SEARCH" << endl;
                 cout << "Enter VALUE of TREE NODE to SEARCH in AVL Tree: ";
                 cin >> val;
-                //new_node = obj.iterativeSearch(val);
                 new_node = obj.recursiveSearch(obj.root, val);
+				
                 if (new_node != nullptr) {
                     cout << "Value found" << endl;
                 } else {
@@ -342,18 +342,12 @@ int main() {
                 cout << "DELETE" << endl;
                 cout << "Enter VALUE of TREE NODE to DELETE in AVL: ";
                 cin >> val;
-                new_node = obj.recursiveSearch(obj.root, val);
-                if (new_node != nullptr) {
-                    obj.root = obj.deleteNode(obj.root, val);
-                    cout << "Value Deleted" << endl;
-                } else {
-                    cout << "Value NOT found" << endl;
-                }
+                
                 break;
             case 4:
-//                cout << "PRINT 2D: " << endl;
-//                obj.print2D(obj.root, 5);
-//                cout << endl;
+                cout << "PRINT 2D: " << endl;
+                obj.print2D(obj.root, 5);
+                cout << endl;
                 cout <<"Print Level Order BFS: \n";
                 obj.printLevelOrderBFS(obj.root);
                 cout <<endl;
@@ -373,10 +367,33 @@ int main() {
             case 6:
                 system("cls");
                 break;
+			case 7:
+				cout<<"Valoare maxima: "<<obj.max()<<endl;
+				break;
+			case 8:
+				cout<<"Valoare minima: "<<obj.min()<<endl;
+				break;
+			case 9:
+				int val;
+				cout<<"Succesor: "<<endl;
+				cin>>val;
+				cout<<"Succesorul este "<<obj.succesor(val)<<endl;
+				break;
+			case 10:
+				int val2;
+				cout<<"Predecesor: "<<endl;
+				cin>>val2;
+				cout<<"Predecesorul este "<<obj.predecesor(val2)<<endl;
+				break;
+			case 11:
+				int k;
+				cout<<"Al k-ulea element: "<<endl;
+				cin>>k;
+				cout<<"Al k-ulea element este: "<<obj.k_element(k);
+				break;
             default:
                 cout << "Enter Proper Option number " << endl;
         }
-
     } while (option != 0);
 
     return 0;

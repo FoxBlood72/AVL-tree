@@ -80,7 +80,7 @@ void succesorTimeTest(AVLTree &tr, ofstream &g, int *result, int k)
 			cout<<"EROARE GASITA IN SUCCESOR ELEMENT: "<<x<<endl;
 	}
 	auto end = chrono::steady_clock::now();
-	cout<<"Timpul pentru a gasi toate succesoarele din structura: "<<chrono::duration <double, milli> (end - start).count() <<" ms"<<endl;
+	cout<<"Timpul pentru a gasi toti succesorii din structura: "<<chrono::duration <double, milli> (end - start).count() <<" ms"<<endl;
 
 	
 //	delete []copyElem;
@@ -104,10 +104,31 @@ void predecesorTimeTest(AVLTree &tr, ofstream &g, int *result, int k)
 	}
 	
 	auto end = chrono::steady_clock::now();
-	cout<<"Timpul pentru a gasi toate predecesoarele din structura: "<<chrono::duration <double, milli> (end - start).count() <<" ms"<<endl;
+	cout<<"Timpul pentru a gasi toti predecesorii din structura: "<<chrono::duration <double, milli> (end - start).count() <<" ms"<<endl;
 
 	
 //	delete []copyElem;
+}
+
+
+void este_inTimeTest(AVLTree &tr, ofstream &g, int *result, int k)
+{
+	auto start = chrono::steady_clock::now();
+	int position = 0;
+	for(int i = result[0]; i <= result[k-1]; i++)
+		if(tr.este_in(i))
+		{
+			g<<"Numarul "<<i<<" este in multimea data"<<endl;
+			if(result[position] != i)
+				cout<<"EROARE IN este_in() PENTRU VALOAREA "<<i<<endl;
+			
+			position++;
+		}
+		else
+			g<<"Numarul "<<i<<" NU este in multimea data"<<endl;
+	auto end = chrono::steady_clock::now();
+	cout<<"Timpul pentru a verifica daca anumite elemente exista in multime este de: "<<chrono::duration <double, milli> (end - start).count() <<" ms"<<endl;
+
 }
 
 int main(int argc, char *argv[]) {
@@ -179,7 +200,10 @@ int main(int argc, char *argv[]) {
 		
 		maxTimeTest(trees[i], g, orderedElements, k_result);
 		
+		este_inTimeTest(trees[i], g, orderedElements, k_result);
+		
 		deleteTimeTest(trees[i], g, orderedElements, k_result);
+		
 		
 		delete []orderedElements;
 	}	

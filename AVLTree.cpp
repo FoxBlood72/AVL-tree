@@ -2,8 +2,6 @@
 #include "AVLTree.hpp"
 #include "TreeNode.hpp"
 
-#define SPACE 10
-
 using namespace std;
 
 AVLTree::AVLTree() {
@@ -244,28 +242,6 @@ TreeNode *AVLTree::deleteNode(TreeNode * r, int v)
     return r;
 }
 
-void AVLTree::print2D(TreeNode * r, int space) {
-	if (r == nullptr) // Base case  1
-		return;
-	space += SPACE; // Increase distance between levels   2
-	print2D(r -> right, space); // Process right child first 3
-	cout << endl;
-	for (int i = SPACE; i < space; i++) // 5
-		cout << " "; // 5.1
-	cout << r -> value << "\n"; // 6
-	print2D(r -> left, space); // Process left child  7
-}
-void AVLTree::printPreorder(TreeNode * r) //(current node, Left, Right)
-{
-	if (r == nullptr)
-		return;
-	/* first print data of node */
-	cout << r -> value << " ";
-	/* then recur on left sutree */
-	printPreorder(r -> left);
-	/* now recur on right subtree */
-	printPreorder(r -> right);
-}
 
 
 int AVLTree::k_element(unsigned int k)
@@ -290,65 +266,6 @@ void AVLTree::k_elementSearch(TreeNode *r, unsigned int k, unsigned int &count, 
 	this->k_elementSearch(r -> right, k, count, result);
 }
 
-
-void AVLTree::printInorder(TreeNode * r) //  (Left, current node, Right)
-{
-	if (r == nullptr)
-		return;
-	/* first recur on left child */
-	printInorder(r -> left);
-	/* then print the data of node */
-	cout << r -> value << " ";
-	/* now recur on right child */
-	printInorder(r -> right);
-}
-void AVLTree::printPostorder(TreeNode * r) //(Left, Right, Root)
-{
-	if (r == nullptr)
-		return;
-	// first recur on left subtree
-	printPostorder(r -> left);
-	// then recur on right subtree
-	printPostorder(r -> right);
-	// now deal with the node
-	cout << r -> value << " ";
-}
-
-/* Print nodes at a given level */
-void AVLTree::printGivenLevel(TreeNode * r, int level) {
-	if (r == nullptr)
-		return;
-	else if (level == 0)
-		cout << r -> value << " ";
-	else // level > 0
-	{
-		printGivenLevel(r -> left, level - 1);
-		printGivenLevel(r -> right, level - 1);
-	}
-}
-void AVLTree::printLevelOrderBFS(TreeNode * r) {
-	int h = height(r);
-	for (int i = 0; i <= h; i++)
-		printGivenLevel(r, i);
-}
-
-TreeNode *AVLTree::iterativeSearch(int v) {
-	if (root == nullptr) {
-		return root;
-	} else {
-		TreeNode * temp = root;
-		while (temp != nullptr) {
-			if (v == temp -> value) {
-				return temp;
-			} else if (v < temp -> value) {
-				temp = temp -> left;
-			} else {
-				temp = temp -> right;
-			}
-		}
-		return nullptr;
-	}
-}
 
 int AVLTree::succesor(int val)
 {
